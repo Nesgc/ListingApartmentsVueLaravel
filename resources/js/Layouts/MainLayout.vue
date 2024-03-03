@@ -1,7 +1,7 @@
 <template>
-    <Link href="/show">Show Page</Link>&nbsp;
-    <Link href="/">Main Page</Link>
+    <Link href="/listing">Listing Page</Link>&nbsp;
 
+    <div></div>
     <slot></slot>
 </template>
 
