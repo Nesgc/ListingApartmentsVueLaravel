@@ -1,10 +1,24 @@
 <template>
-    <Link href="/listing">Listing Page</Link>&nbsp;
-
+    <header></header>
     <div></div>
-    <slot></slot>
+    <main class="container mx-auto p-4 w-full">
+        <div v-if="page.props.flash.success" class="success">
+            {{ page.props.flash.success }}
+        </div>
+        <slot>Default</slot>
+    </main>
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import { computed } from "vue";
+import { Link, usePage } from "@inertiajs/vue3";
+
+const page = usePage();
 </script>
+
+<style>
+.success {
+    background-color: green;
+    color: white;
+}
+</style>

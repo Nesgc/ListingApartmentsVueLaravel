@@ -22,4 +22,4 @@ Route::get('/show', [IndexController::class, 'show']);
 Route::get('/nes', [IndexController::class, 'nes']);
 
 
-Route::resource('listing', ListingController::class)->only(['index', 'show']);
+Route::resource('listing', ListingController::class);
