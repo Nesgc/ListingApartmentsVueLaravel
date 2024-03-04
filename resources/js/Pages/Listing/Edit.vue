@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submit">
+    <form @submit.prevent="update">
         <div>
             <div>
                 <label>Beds</label>
@@ -68,21 +68,25 @@
 import { useForm } from "@inertiajs/vue3";
 
 import { router } from "@inertiajs/vue3";
-const form = useForm({
-    beds: 0,
-    baths: 0,
-    area: 0,
-    city: null,
-    street: null,
-    code: null,
-    street_nr: null,
-    price: 0,
+const props = defineProps({
+    listing: Object,
+
+    errors: Object,
 });
 
-defineProps({ errors: Object });
+const form = useForm({
+    beds: props.listing.beds,
+    baths: props.listing.baths,
+    area: props.listing.area,
+    city: props.listing.city,
+    street: props.listing.street,
+    code: props.listing.code,
+    street_nr: props.listing.street_nr,
+    price: props.listing.price,
+});
 
-function submit() {
-    router.post("/listing", form);
+function update() {
+    router.put(route("listing.update", { listing: props.listing.id }), form);
 }
 </script>
 

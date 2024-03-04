@@ -77,16 +77,33 @@ class ListingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Listing $listing)
     {
-        //
+        $listing->update($request->validate([
+            'beds' => [''],
+            'baths' => [''],
+            'area' => [''],
+            'city' => ['required'],
+            'code' => ['required'],
+            'street' => [''],
+            'street_nr' => [''],
+            'price' => [''],
+
+        ]));
+
+
+
+        return to_route('listing.index')->with('success', "Listing {$listing->city} was changed!");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Listing $listing)
     {
-        //
+        $listing->delete();
+
+        return redirect()->back()
+            ->with('warnings', 'Listing was deleted');
     }
 }

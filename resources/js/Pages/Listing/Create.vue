@@ -82,7 +82,7 @@ const form = useForm({
 defineProps({ errors: Object });
 
 function submit() {
-    router.post("/listing", form);
+    router.post(route("listing.store"), form);
 }
 </script>
 
