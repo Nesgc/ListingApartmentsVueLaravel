@@ -34,14 +34,14 @@ class ListingController extends Controller
     public function store(Request $request)
     {
         Listing::create($request->validate([
-            'beds' => ['max:50'],
-            'baths' => ['max:50'],
-            'area' => ['max:50'],
-            'city' => ['min:2'],
-            'code' => ['max:50'],
-            'street' => ['max:50'],
-            'street_nr' => ['max:50'],
-            'price' => ['max:50'],
+            'beds' => [''],
+            'baths' => [''],
+            'area' => [''],
+            'city' => ['required'],
+            'code' => ['required'],
+            'street' => [''],
+            'street_nr' => [''],
+            'price' => [''],
 
         ]));
 
@@ -64,9 +64,14 @@ class ListingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Listing $listing)
     {
-        //
+        return inertia(
+            'Listing/Edit',
+            [
+                'listing' => $listing
+            ]
+        );
     }
 
     /**
