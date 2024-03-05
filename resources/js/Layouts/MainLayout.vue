@@ -1,14 +1,42 @@
 <template>
-    <header></header>
-    <div></div>
-    <main class="container mx-auto p-4 w-full">
-        <div v-if="flashwarnings" class="warnings">
-            {{ flashwarnings }}
+    <header
+        class="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 w-full"
+    >
+        <div class="container mx-auto">
+            <nav class="p-4 flex items-center justify-between">
+                <div class="text-lg font-medium">
+                    <Link :href="route('listing.index')">Listings</Link>
+                </div>
+                <div
+                    class="text-xl text-indigo-600 dark:text-indigo-300 font-bold text-center"
+                >
+                    <Link :href="route('listing.index')">LaraZillow</Link>
+                </div>
+                <div>
+                    <Link
+                        :href="route('listing.create')"
+                        class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium p-2 rounded-md"
+                        >+ New Listing</Link
+                    >
+                </div>
+            </nav>
         </div>
-        <div v-if="flashSuccess" class="success">
+    </header>
+
+    <main class="container mx-auto p-4">
+        <div
+            v-if="flashSuccess"
+            class="mb-4 border rounded-md shadow-sm border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900 p-2"
+        >
             {{ flashSuccess }}
         </div>
 
+        <div
+            v-if="flashwarnings"
+            class="mb-4 border rounded-md shadow-sm border-green-200 dark:border-red-800 bg-green-50 dark:bg-red-900 p-2"
+        >
+            {{ flashwarnings }}
+        </div>
         <slot>Default</slot>
     </main>
 </template>
@@ -22,15 +50,3 @@ const flashwarnings = computed(() => page.props.flash.warnings);
 
 const flashSuccess = computed(() => page.props.flash.success);
 </script>
-
-<style>
-.success {
-    background-color: green;
-    color: white;
-}
-
-.warnings {
-    background-color: rgb(233, 58, 58);
-    color: rgb(0, 0, 0);
-}
-</style>

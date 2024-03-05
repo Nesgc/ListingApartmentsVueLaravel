@@ -9,7 +9,9 @@
         <div>
             <Link :href="route('listing.edit', listing.id)">Edit</Link>
         </div>
-
+        <h1 class="text-6xl text-amber-400 font-bold underline">
+            Hello world!
+        </h1>
         <div>
             <Link
                 :href="route('listing.destroy', listing.id)"

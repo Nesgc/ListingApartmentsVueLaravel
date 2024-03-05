@@ -23,3 +23,5 @@ Route::get('/nes', [IndexController::class, 'nes']);
 
 
 Route::resource('listing', ListingController::class);
+
+
